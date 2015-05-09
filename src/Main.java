@@ -364,6 +364,7 @@ class Main {
 			for (int j = 0; j < resposta.size(); j++) {
 				System.out.println(it4.next());
 			}
+			if(i < (casos-1))	
 				System.out.println();
 			
 		}
