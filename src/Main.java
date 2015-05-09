@@ -1,10 +1,10 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
 
 
 class Main {
@@ -271,8 +271,9 @@ class Main {
 		Scanner sc = new Scanner(System.in);
 		
 		int casos = sc.nextInt();
-		Set<String> set = new TreeSet<String>();
+		Collection<String> set = new LinkedList<String>();
 		String atual;
+		sc.nextLine();
 		sc.nextLine();
 		
 		// loop dos casos de input
@@ -280,7 +281,6 @@ class Main {
 			
 			// limpa o set do caso anterior
 			set.clear();
-			sc.nextLine();
 			
 			// captura todas as linhas do caso i
 			while(sc.hasNext()){
@@ -297,7 +297,7 @@ class Main {
 			Iterator<String> it = set.iterator();
 			
 			// tenta encontrar a linha que criará o mapa
-			while(it.hasNext()){
+			while(it.hasNext() && !mapa_criado){
 				if(criaMapa(it.next())){
 					mapa_criado = true;
 				}
@@ -306,6 +306,7 @@ class Main {
 			// se um mapa não foi criado corretamente, dá output correspondente
 			if(!mapa_criado){ 
 				System.out.println("No solution.");
+				System.out.println();
 				continue;
 			}
 			
@@ -314,6 +315,7 @@ class Main {
 			for(int j = 0; j<set.size(); j++){
 				traduzir(it2.next());
 			}
+			System.out.println();
 			
 		}
 		
