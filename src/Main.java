@@ -97,7 +97,7 @@ class Main {
 			mapa.put(atual.charAt(2), 'x');
 			
 			// se ele der dois mapeamentos para a mesma letra, retorna falso
-			if(mapa.get(atual.charAt(1))!='o'){
+			if(!mapa.containsKey(atual.charAt(1)) || mapa.get(atual.charAt(1))!='o'){
 				sc.close();
 				return false;
 			}
@@ -141,12 +141,12 @@ class Main {
 			mapa.put(atual.charAt(2), 'e');
 			
 			// se ele der dois mapeamentos para a mesma letra, retorna falso
-			if(mapa.get(atual.charAt(0))!='o'){
+			if(!mapa.containsKey(atual.charAt(0)) || mapa.get(atual.charAt(0))!='o'){
 				sc.close();
 				return false;
 			}
 
-			if(mapa.get(atual.charAt(3))!='r'){
+			if(!mapa.containsKey(atual.charAt(3)) || mapa.get(atual.charAt(3))!='r'){
 				sc.close();
 				return false;
 			}
@@ -169,17 +169,17 @@ class Main {
 
 		if(atual.length() == 3){
 			// se ele der dois mapeamentos para a mesma letra, retorna falso
-			if(mapa.get(atual.charAt(0))!='t'){
+			if(!mapa.containsKey(atual.charAt(0)) || mapa.get(atual.charAt(0))!='t'){
 				sc.close();
 				return false;
 			}
 
-			if(mapa.get(atual.charAt(1))!='h'){
+			if(!mapa.containsKey(atual.charAt(1)) || mapa.get(atual.charAt(1))!='h'){
 				sc.close();
 				return false;
 			}
 
-			if(mapa.get(atual.charAt(2))!='e'){
+			if(!mapa.containsKey(atual.charAt(2)) || mapa.get(atual.charAt(2))!='e'){
 				sc.close();
 				return false;
 			}
@@ -222,7 +222,7 @@ class Main {
 			mapa.put(atual.charAt(2), 'g');
 
 			// se ele der dois mapeamentos para a mesma letra, retorna falso
-			if(mapa.get(atual.charAt(1))!='o'){
+			if(!mapa.containsKey(atual.charAt(1)) || mapa.get(atual.charAt(1))!='o'){
 				sc.close();
 				return false;
 			}
@@ -234,13 +234,21 @@ class Main {
 			return false;
 		}		
 		
+		// se ainda há palavras na linha lida, ela não corresponde ao enunciado
+		if(sc.hasNext()){
+			sc.close();
+			return false;
+		}		
+		
 		// se chegou até aqui, o mapa foi criado corretamente
 		sc.close();
 		return true;
 
 	}
 	
-	public static void traduzir(String linha){
+	static Collection<String> resposta = new LinkedList<String>();
+	
+	public static boolean traduzir(String linha){
 		
 		char[] trad = new char[linha.length()];
 		
@@ -252,23 +260,23 @@ class Main {
 				continue;
 			}
 			
+			if(!mapa.containsKey(linha.charAt(i)))
+				return false;
+			
 			trad[i] = mapa.get(linha.charAt(i));
 		}
 		
-		System.out.println(trad);
+		resposta.add(String.valueOf(trad));
+		return true;
 		
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		
 		// para testes no eclipse
-		try {
-			System.setIn(new FileInputStream("entrada.txt"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		Scanner sc = new Scanner(new FileInputStream("entrada.txt"));
 		
-		Scanner sc = new Scanner(System.in);
+		// Scanner sc = new Scanner(System.in);
 		
 		int casos = sc.nextInt();
 		Collection<String> set = new LinkedList<String>();
@@ -311,9 +319,22 @@ class Main {
 			}
 			
 			Iterator<String> it2 = set.iterator();
+			
+			// limpa a resposta anterior
+			resposta.clear();
+			
 			// usa o mapa criado para dar todas as saídas correspondentes
 			for(int j = 0; j<set.size(); j++){
-				traduzir(it2.next());
+				if(!traduzir(it2.next())){
+					System.out.println("No solution.");
+					break;
+				}
+			}
+			
+			// printa a resposta
+			Iterator<String> it4 = resposta.iterator();
+			for (int j = 0; j < resposta.size(); j++) {
+				System.out.println(it4.next());
 			}
 			System.out.println();
 			
@@ -323,14 +344,4 @@ class Main {
 		sc.close();
 
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
