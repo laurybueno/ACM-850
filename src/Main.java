@@ -1,3 +1,5 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -239,6 +241,14 @@ class Main {
 	}
 
 	public static void main(String[] args) {
+		
+		// para testes no eclipse
+		try {
+			System.setIn(new FileInputStream("entrada.txt"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 		Scanner sc = new Scanner(System.in);
 		
 		int casos = sc.nextInt();
@@ -252,7 +262,6 @@ class Main {
 			// limpa o set do caso anterior
 			set.clear();
 			sc.nextLine();
-			
 			
 			// captura todas as linhas do caso i
 			while(sc.hasNext()){
@@ -282,7 +291,7 @@ class Main {
 			}
 			
 			// usa o mapa criado para dar todas as saídas correspondentes
-			System.out.println(set);
+			System.out.println(mapa);
 			
 		}
 		
