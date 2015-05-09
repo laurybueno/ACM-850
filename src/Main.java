@@ -11,6 +11,16 @@ class Main {
 	
 	static HashMap<Character, Character> mapa = new HashMap<Character, Character>();
 	
+	public static boolean adicionaMapa(char a, char b){
+		if(!mapa.containsKey(a)){
+			mapa.put(a, b);
+			return true;
+		}
+		return false;
+		
+	}
+	
+	
 	/*
 	 *  Tenta criar um mapa de tradução baseado na linha dada
 	 *  Se conseguir, retorna true indicando que o mapa está pronto
@@ -18,6 +28,8 @@ class Main {
 	public static boolean criaMapa(String linha){
 		// limpa do mapa as tentativas anteriores
 		mapa.clear();
+		
+		if(linha.contains("  ")) return false;
 		
 		Scanner sc = new Scanner(linha);
 		
@@ -34,9 +46,10 @@ class Main {
 		
 		// "the"
 		if(atual.length() == 3){
-			mapa.put(atual.charAt(0), 't');
-			mapa.put(atual.charAt(1), 'h');
-			mapa.put(atual.charAt(2), 'e');
+			if(!adicionaMapa(atual.charAt(0), 't')) return false;
+			
+			if(!adicionaMapa(atual.charAt(1), 'h')) return false;
+			if(!adicionaMapa(atual.charAt(2), 'e')) return false;
 		}
 		else{
 			sc.close();
@@ -53,11 +66,11 @@ class Main {
 		}
 		
 		if(atual.length() == 5){
-			mapa.put(atual.charAt(0), 'q');
-			mapa.put(atual.charAt(1), 'u');
-			mapa.put(atual.charAt(2), 'i');
-			mapa.put(atual.charAt(3), 'c');
-			mapa.put(atual.charAt(4), 'k');
+			if(!adicionaMapa(atual.charAt(0), 'q')) return false;
+			if(!adicionaMapa(atual.charAt(1), 'u')) return false;
+			if(!adicionaMapa(atual.charAt(2), 'i')) return false;
+			if(!adicionaMapa(atual.charAt(3), 'c')) return false;
+			if(!adicionaMapa(atual.charAt(4), 'k')) return false;
 		}
 		else{
 			sc.close();
@@ -73,11 +86,11 @@ class Main {
 		}
 
 		if(atual.length() == 5){
-			mapa.put(atual.charAt(0), 'b');
-			mapa.put(atual.charAt(1), 'r');
-			mapa.put(atual.charAt(2), 'o');
-			mapa.put(atual.charAt(3), 'w');
-			mapa.put(atual.charAt(4), 'n');
+			if(!adicionaMapa(atual.charAt(0), 'b')) return false;
+			if(!adicionaMapa(atual.charAt(1), 'r')) return false;
+			if(!adicionaMapa(atual.charAt(2), 'o')) return false;
+			if(!adicionaMapa(atual.charAt(3), 'w')) return false;
+			if(!adicionaMapa(atual.charAt(4), 'n')) return false;
 		}
 		else{
 			sc.close();
@@ -93,8 +106,8 @@ class Main {
 		}
 
 		if(atual.length() == 3){
-			mapa.put(atual.charAt(0), 'f');
-			mapa.put(atual.charAt(2), 'x');
+			if(!adicionaMapa(atual.charAt(0), 'f')) return false;
+			if(!adicionaMapa(atual.charAt(2), 'x')) return false;
 			
 			// se ele der dois mapeamentos para a mesma letra, retorna falso
 			if(!mapa.containsKey(atual.charAt(1)) || mapa.get(atual.charAt(1))!='o'){
@@ -117,11 +130,18 @@ class Main {
 		}
 
 		if(atual.length() == 5){
-			mapa.put(atual.charAt(0), 'j');
-			mapa.put(atual.charAt(1), 'u');
-			mapa.put(atual.charAt(2), 'm');
-			mapa.put(atual.charAt(3), 'p');
-			mapa.put(atual.charAt(4), 's');
+			if(!adicionaMapa(atual.charAt(0), 'j')) return false;
+			if(!adicionaMapa(atual.charAt(2), 'm')) return false;
+			if(!adicionaMapa(atual.charAt(3), 'p')) return false;
+			if(!adicionaMapa(atual.charAt(4), 's')) return false;
+			
+			// se ele der dois mapeamentos para a mesma letra, retorna falso
+			if(!mapa.containsKey(atual.charAt(1)) || mapa.get(atual.charAt(1))!='u'){
+				sc.close();
+				return false;
+			}
+
+			
 		}
 		else{
 			sc.close();
@@ -137,11 +157,15 @@ class Main {
 		}
 
 		if(atual.length() == 4){
-			mapa.put(atual.charAt(1), 'v');
-			mapa.put(atual.charAt(2), 'e');
+			if(!adicionaMapa(atual.charAt(1), 'v')) return false;
 			
 			// se ele der dois mapeamentos para a mesma letra, retorna falso
 			if(!mapa.containsKey(atual.charAt(0)) || mapa.get(atual.charAt(0))!='o'){
+				sc.close();
+				return false;
+			}
+			
+			if(!mapa.containsKey(atual.charAt(2)) || mapa.get(atual.charAt(2))!='e'){
 				sc.close();
 				return false;
 			}
@@ -199,10 +223,10 @@ class Main {
 		}
 
 		if(atual.length() == 4){
-			mapa.put(atual.charAt(0), 'l');
-			mapa.put(atual.charAt(1), 'a');
-			mapa.put(atual.charAt(2), 'z');
-			mapa.put(atual.charAt(3), 'y');
+			if(!adicionaMapa(atual.charAt(0), 'l')) return false;
+			if(!adicionaMapa(atual.charAt(1), 'a')) return false;
+			if(!adicionaMapa(atual.charAt(2), 'z')) return false;
+			if(!adicionaMapa(atual.charAt(3), 'y')) return false;
 		}
 		else{
 			sc.close();
@@ -218,8 +242,8 @@ class Main {
 		}
 
 		if(atual.length() == 3){
-			mapa.put(atual.charAt(0), 'd');
-			mapa.put(atual.charAt(2), 'g');
+			if(!adicionaMapa(atual.charAt(0), 'd')) return false;
+			if(!adicionaMapa(atual.charAt(2), 'g')) return false;
 
 			// se ele der dois mapeamentos para a mesma letra, retorna falso
 			if(!mapa.containsKey(atual.charAt(1)) || mapa.get(atual.charAt(1))!='o'){
@@ -271,13 +295,17 @@ class Main {
 		
 	}
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException  {
 		
 		// para testes no eclipse
+		try {
+			System.setIn(new FileInputStream("entrada.txt"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		Scanner sc = new Scanner(new FileInputStream("entrada.txt"));
-		
 		// Scanner sc = new Scanner(System.in);
-		
+
 		int casos = sc.nextInt();
 		Collection<String> set = new LinkedList<String>();
 		String atual;
@@ -336,7 +364,7 @@ class Main {
 			for (int j = 0; j < resposta.size(); j++) {
 				System.out.println(it4.next());
 			}
-			System.out.println();
+				System.out.println();
 			
 		}
 		
