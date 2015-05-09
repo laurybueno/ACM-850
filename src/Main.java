@@ -239,6 +239,25 @@ class Main {
 		return true;
 
 	}
+	
+	public static void traduzir(String linha){
+		
+		char[] trad = new char[linha.length()];
+		
+		for(int i = 0; i < linha.length(); i++){
+			
+			// se o caracter atual for um espaço em branco
+			if(linha.charAt(i) == ' '){
+				trad[i] = ' ';
+				continue;
+			}
+			
+			trad[i] = mapa.get(linha.charAt(i));
+		}
+		
+		System.out.println(trad);
+		
+	}
 
 	public static void main(String[] args) {
 		
@@ -290,8 +309,11 @@ class Main {
 				continue;
 			}
 			
+			Iterator<String> it2 = set.iterator();
 			// usa o mapa criado para dar todas as saídas correspondentes
-			System.out.println(mapa);
+			for(int j = 0; j<set.size(); j++){
+				traduzir(it2.next());
+			}
 			
 		}
 		
