@@ -1,5 +1,8 @@
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 
 class Main {
@@ -236,8 +239,65 @@ class Main {
 	}
 
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int casos = sc.nextInt();
+		Set<String> set = new TreeSet<String>();
+		String atual;
+		sc.nextLine();
+		
+		// loop dos casos de input
+		for(int i = 0; i<casos; i++){
 			
+			// limpa o set do caso anterior
+			set.clear();
+			sc.nextLine();
+			
+			
+			// captura todas as linhas do caso i
+			while(sc.hasNext()){
+				atual = sc.nextLine();
+				
+				// se encontrar uma linha em branco, encerre a captura deste caso
+				if(atual.length() == 0)
+					break;
+				
+				set.add(atual);
+			}
+			
+			boolean mapa_criado = false;
+			Iterator<String> it = set.iterator();
+			
+			// tenta encontrar a linha que criará o mapa
+			while(it.hasNext()){
+				if(criaMapa(it.next())){
+					mapa_criado = true;
+				}
+			}
+			
+			// se um mapa não foi criado corretamente, dá output correspondente
+			if(!mapa_criado){ 
+				System.out.println("No solution.");
+				continue;
+			}
+			
+			// usa o mapa criado para dar todas as saídas correspondentes
+			System.out.println(set);
+			
+		}
+		
+		
+		sc.close();
 
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
