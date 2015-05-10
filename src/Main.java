@@ -354,8 +354,7 @@ class Main {
 			
 			// se um mapa não foi criado corretamente, dá output correspondente
 			if(!mapa_criado){
-				System.out.println("No solution.");
-				System.out.println();
+				System.out.print("No solution.");
 				continue;
 			}
 			
@@ -374,11 +373,18 @@ class Main {
 			
 			// printa a resposta
 			Iterator<String> it4 = resposta.iterator();
+			int a = resposta.size();
 			for (int j = 0; j < resposta.size(); j++) {
-				System.out.println(it4.next());
+				a--;
+				System.out.print(it4.next());
+				if (!(a == 0 && i == casos-1)){
+					System.out.println();
+				}
 			}
-			if(i < (casos-1))	
+			
+			if(!(i == casos-1))
 				System.out.println();
+
 			
 		}
 		
