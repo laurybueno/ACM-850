@@ -30,6 +30,7 @@ class Main {
 		mapa.clear();
 		
 		if(linha.contains("  ")) return false;
+		if(linha.length() != 43) return false;
 		
 		Scanner sc = new Scanner(linha);
 		
