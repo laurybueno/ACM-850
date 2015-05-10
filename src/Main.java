@@ -326,6 +326,19 @@ class Main {
 				if(atual.length() == 0)
 					break;
 				
+				atual = atual.replace("_", "");
+				atual = atual.replace("*", "");
+				atual = atual.replace("&", "");
+				atual = atual.replace("$", "");
+				atual = atual.replace("-", "");
+				atual = atual.replace("!", "");
+				atual = atual.replace("?", "");
+				atual = atual.replace(",", "");
+				atual = atual.replace(".", "");
+				atual = atual.replace("<", "");
+				atual = atual.replace(">", "");
+				atual = atual.replace("^", "");
+				
 				set.add(atual);
 			}
 			
