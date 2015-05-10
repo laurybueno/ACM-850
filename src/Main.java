@@ -337,7 +337,23 @@ class Main {
 				atual = atual.replace(".", "");
 				atual = atual.replace("<", "");
 				atual = atual.replace(">", "");
-				atual = atual.replace("^", "");
+				atual = atual.replace(":", "");
+				atual = atual.replace(";", "");
+				atual = atual.replace("[", "");
+				atual = atual.replace("]", "");
+				atual = atual.replace("'", "");
+				atual = atual.replace("\"", "");
+				atual = atual.replace("0", "");
+				atual = atual.replace("1", "");
+				atual = atual.replace("2", "");
+				atual = atual.replace("3", "");
+				atual = atual.replace("4", "");
+				atual = atual.replace("5", "");
+				atual = atual.replace("6", "");
+				atual = atual.replace("7", "");
+				atual = atual.replace("8", "");
+				atual = atual.replace("9", "");
+				
 				
 				set.add(atual);
 			}
