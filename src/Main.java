@@ -295,16 +295,9 @@ class Main {
 		
 	}
 
-	public static void main(String[] args) throws FileNotFoundException  {
-		
-		// para testes no eclipse
-		try {
-			System.setIn(new FileInputStream("entrada.txt"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		Scanner sc = new Scanner(new FileInputStream("entrada.txt"));
-		// Scanner sc = new Scanner(System.in);
+	public static void main(String[] args)  {
+
+		Scanner sc = new Scanner(System.in);
 
 		int casos = sc.nextInt();
 		Collection<String> set = new LinkedList<String>();
@@ -319,7 +312,7 @@ class Main {
 			set.clear();
 			
 			// captura todas as linhas do caso i
-			while(sc.hasNext()){
+			while(sc.hasNextLine()){
 				atual = sc.nextLine();
 				
 				// se encontrar uma linha em branco, encerre a captura deste caso
