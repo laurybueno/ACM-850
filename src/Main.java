@@ -29,7 +29,6 @@ class Main {
 		// limpa do mapa as tentativas anteriores
 		mapa.clear();
 		
-		if(linha.contains("  ")) return false;
 		if(linha.length() != 43) return false;
 		
 		Scanner sc = new Scanner(linha);
@@ -341,7 +340,7 @@ class Main {
 			}
 			
 			// se um mapa não foi criado corretamente, dá output correspondente
-			if(!mapa_criado){ 
+			if(!mapa_criado){
 				System.out.println("No solution.");
 				System.out.println();
 				continue;
@@ -369,7 +368,6 @@ class Main {
 				System.out.println();
 			
 		}
-		
 		
 		sc.close();
 
